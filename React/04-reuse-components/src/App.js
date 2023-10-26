@@ -47,11 +47,43 @@ const pizzaData = [
 function App() {
   return (
     <>
-      <h1>Pizza Home</h1>
+      <Header />
+      <Menu />
+      <Footer />
+    </>
+  );
+}
+
+//Header
+function Header() {
+  return <h1>World's Best Pizza Shop!</h1>;
+}
+//Menu
+function Menu() {
+  return (
+    <>
       <Pizza />
       <Pizza />
       <Pizza />
       <Pizza />
+    </>
+  );
+}
+//Footer
+function Footer() {
+  let currentHour = new Date().getHours();
+  let openHour = 1;
+  let closeHour = 22;
+  let isOpen = currentHour >= openHour && currentHour < closeHour;
+  let openingMessage = "";
+  if (isOpen) {
+    openingMessage = "We are currently Open ❤️";
+  } else {
+    openingMessage = "Sorry we are currently Closed 😔";
+  }
+  return (
+    <>
+      <footer>{openingMessage}</footer>
     </>
   );
 }
