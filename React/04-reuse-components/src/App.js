@@ -1,3 +1,5 @@
+import "./index.css";
+
 const pizzaData = [
   {
     name: "Focaccia",
@@ -46,29 +48,55 @@ const pizzaData = [
 //Header Section Component
 function App() {
   return (
-    <>
+    <div className="conatainer">
       <Header />
       <Menu />
       <Footer />
-    </>
+    </div>
   );
 }
 
 //Header
 function Header() {
-  return <h1>World's Best Pizza Shop!</h1>;
+  return (
+    <header className="header">
+      <h1>World's Best Pizza Shop!</h1>
+    </header>
+  );
 }
 //Menu
 function Menu() {
   return (
-    <>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </>
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza
+        name="Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        photoName="pizzas/focaccia.jpg"
+        price={6}
+      />
+      <Pizza
+        name="Pizza Salamino"
+        ingredients="Tomato, mozarella, and pepperoni"
+        price={15}
+        photoName="pizzas/salamino.jpg"
+      />
+    </main>
   );
 }
+
+//Menu Section Component
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <h3>{props.name}</h3>
+      <p>{props.ingredients}</p>
+      <span>{props.price}</span>
+    </div>
+  );
+}
+
 //Footer
 function Footer() {
   let currentHour = new Date().getHours();
@@ -81,21 +109,7 @@ function Footer() {
   } else {
     openingMessage = "Sorry we are currently Closed 😔";
   }
-  return (
-    <>
-      <footer>{openingMessage}</footer>
-    </>
-  );
+  return <footer className="footer">{openingMessage}</footer>;
 }
 
-//Menu Section Component
-function Pizza() {
-  return (
-    <>
-      <img src="pizzas/focaccia.jpg" alt="focaccia" />
-      <h2>Focaccia</h2>
-      <p>Bread with italian olive oil and rosemary</p>
-    </>
-  );
-}
 export default App;
