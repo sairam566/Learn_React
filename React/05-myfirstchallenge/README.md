@@ -1,4 +1,4 @@
 # My first coding challenge
 
 - My Final output
-  ![Text](./public/Final-Output.png)
+- ![Text](./public/Final-Output.png)
