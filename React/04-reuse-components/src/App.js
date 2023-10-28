@@ -69,7 +69,12 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      {/* <Pizza
         name="Focaccia"
         ingredients="Bread with italian olive oil and rosemary"
         photoName="pizzas/focaccia.jpg"
@@ -80,7 +85,7 @@ function Menu() {
         ingredients="Tomato, mozarella, and pepperoni"
         price={15}
         photoName="pizzas/salamino.jpg"
-      />
+      /> */}
     </main>
   );
 }
@@ -88,12 +93,14 @@ function Menu() {
 //Menu Section Component
 function Pizza(props) {
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
-      <h3>{props.name}</h3>
-      <p>{props.ingredients}</p>
-      <span>{props.price}</span>
-    </div>
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
   );
 }
 
@@ -102,14 +109,18 @@ function Footer() {
   let currentHour = new Date().getHours();
   let openHour = 1;
   let closeHour = 22;
-  let isOpen = currentHour >= openHour && currentHour < closeHour;
-  let openingMessage = "";
-  if (isOpen) {
-    openingMessage = "We are currently Open ❤️";
-  } else {
-    openingMessage = "Sorry we are currently Closed 😔";
-  }
-  return <footer className="footer">{openingMessage}</footer>;
+  let isOpen = currentHour >= openHour && currentHour <= closeHour;
+
+  return (
+    <footer className="footer">
+      {isOpen && (
+        <div className="order">
+          <p>We're open until {closeHour}:00. Come visit us or Order Online</p>
+          <button className="btn">Order Now</button>
+        </div>
+      )}
+    </footer>
+  );
 }
 
 export default App;
